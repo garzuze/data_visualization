@@ -6,14 +6,14 @@ from plotly import offline
 
 from die import Die
 
-# Criando dois dados D6
+# Criando um D6 e um D12
 die_1 = Die()
-die_2 = Die()
+die_2 = Die(12)
 
 # Jogar os dados algumas vezes e armazenar numa lista
 results = []
 
-for roll_num in range(1000):
+for roll_num in range(10_000):
     result = die_1.roll() + die_2.roll()
     results.append(result)
 
@@ -33,7 +33,7 @@ data = [Bar(x=x_values, y=frequencies)]
 x_axis_config = {'title': 'Resultado', 'dtick': 1}
 y_axis_config = {'title': 'Frequencia dos resultados'}
 
-my_layout = Layout(title='Resultados de jogar dois dados D6 1000 vezes',
+my_layout = Layout(title='Resultados de jogar um D6 e um D12 50000 vezes',
                    xaxis=x_axis_config, yaxis=y_axis_config)
 
-offline.plot({'data': data, 'layout': my_layout}, filename='d6_d6.html')
+offline.plot({'data': data, 'layout': my_layout}, filename='d6_d12.html')
