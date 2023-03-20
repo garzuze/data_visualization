@@ -13,10 +13,7 @@ die = Die()
 results = [die.roll() for roll_num in range(1000)]
 
 # Analisando os resultados
-frequencies = []
-
-for value in range(1, die.num_sides+1):
-    frequencies.append(results.count(value))
+frequencies = [results.count(value) for value in range(1, die.num_sides+1)]
 
 # Visualizando os resultados
 
