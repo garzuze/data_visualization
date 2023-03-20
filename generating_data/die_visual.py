@@ -10,11 +10,7 @@ from die import Die
 die = Die()
 
 # Jogar os dados algumas vezes e armazenar numa lista
-results = []
-
-for roll_num in range(1000):
-    result = die.roll()
-    results.append(result)
+results = [die.roll() for roll_num in range(1000)]
 
 # Analisando os resultados
 frequencies = []
