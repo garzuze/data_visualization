@@ -11,22 +11,14 @@ die_1 = Die(8)
 die_2 = Die(8)
 
 # Jogar os dados algumas vezes e armazenar numa lista
-results = []
-
-for roll_num in range(50_000):
-    result = die_1.roll() + die_2.roll()
-    results.append(result)
+results = [die_1.roll() + die_2.roll() for roll_num in range(50_000)]
 
 # Analisando os resultados
-frequencies = []
-max_result = die_1.num_sides + die_2.num_sides
-
 # (a lista começa no dois pois é o menor resultado possível rolando 2 dados)
-for value in range(2, max_result+1):
-    frequencies.append(results.count(value))
+max_result = die_1.num_sides + die_2.num_sides
+frequencies = [results.count(value) for value in range(2, max_result+1)]
 
 # Visualizando os resultados
-
 x_values = list(range(2, max_result+1))
 data = [Bar(x=x_values, y=frequencies)]
 

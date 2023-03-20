@@ -13,22 +13,15 @@ die_2 = Die()
 die_3 = Die()
 
 # Jogar os dados algumas vezes e armazenar numa lista
-results = []
-
-for roll_num in range(50_000):
-    result = die_1.roll() + die_2.roll() + die_3.roll()
-    results.append(result)
+results = [die_1.roll() + die_2.roll() + die_3.roll()
+           for roll_num in range(50_000)]
 
 # Analisando os resultados
-frequencies = []
-max_result = die_1.num_sides + die_2.num_sides + die_3.num_sides
-
 # (a lista começa no três pois é o menor resultado possível rolando 3 dados)
-for value in range(3, max_result+1):
-    frequencies.append(results.count(value))
+max_result = die_1.num_sides + die_2.num_sides + die_3.num_sides
+frequencies = [results.count(value) for value in range(3, max_result+1)]
 
 # Visualizando os resultados
-
 x_values = list(range(3, max_result+1))
 data = [Bar(x=x_values, y=frequencies)]
 
