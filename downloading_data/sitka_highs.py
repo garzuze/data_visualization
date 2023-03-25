@@ -6,6 +6,10 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import csv
 
+def convert_to_celsius(fahrenheit):
+    """Converter fahrenheit para celsius"""
+    return round((fahrenheit - 32) * (5/9), 2)
+
 filename = r'data/sitka_weather_07-2018_simple.csv'
 
 with open(filename) as f:
@@ -13,23 +17,26 @@ with open(filename) as f:
     header_row = next(reader)
     print(header_row)
 
-    # Pegar as temperaturas mais altas
-    highs = []
+    # Pegar as datas e as temperaturas mais altas desse arquivo
+    dates, highs = [], []
     for row in reader:
-        high = int(row[5])
+        current_date = datetime.strptime(row[2], '%Y-%m-%d')
+        high = convert_to_celsius(int(row[5]))
+        dates.append(current_date)
         highs.append(high)
 
 # Gráfico com as temperaturas mais altas
 
 plt.style.use('seaborn')
 fig, ax = plt.subplots()
-ax.plot(highs, c='red')
+ax.plot(dates, highs, c='red')
 
 # Formatando o gráfico
 
-ax.set_title('Temperaturas diárias mais altas em Sitka (07/2018)', fontsize=24)
-ax.set_xlabel("", fontsize=16)
-ax.set_ylabel("Temperatura (Fº)", fontsize=16)
-ax.tick_params(axis='both', which='major', labelsize=16)
+ax.set_title('Temperaturas diárias mais altas em Sitka (07/2018)', fontsize=20)
+ax.set_xlabel("", fontsize=12)
+fig.autofmt_xdate()
+ax.set_ylabel("Temperatura (C°)", fontsize=12)
+ax.tick_params(axis='both', which='major', labelsize=12)
 
 plt.show()
