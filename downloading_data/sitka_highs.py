@@ -1,7 +1,8 @@
 # 23/02/2023 - Lucas Garzuze Cordeiro
 
 # Fazer uma visualização com os dados do tempo da cidade de Sitka
-# Pegando dados de 07/2018
+# Pegando dados de 2018
+
 import matplotlib.pyplot as plt
 from datetime import datetime
 import csv
@@ -10,7 +11,7 @@ def convert_to_celsius(fahrenheit):
     """Converter fahrenheit para celsius"""
     return round((fahrenheit - 32) * (5/9), 2)
 
-filename = r'data/sitka_weather_07-2018_simple.csv'
+filename = r'data/sitka_weather_2018_simple.csv'
 
 with open(filename) as f:
     reader = csv.reader(f)
@@ -33,7 +34,7 @@ ax.plot(dates, highs, c='red')
 
 # Formatando o gráfico
 
-ax.set_title('Temperaturas diárias mais altas em Sitka (07/2018)', fontsize=20)
+ax.set_title('Temperaturas diárias mais altas em Sitka 2018', fontsize=20)
 ax.set_xlabel("", fontsize=12)
 fig.autofmt_xdate()
 ax.set_ylabel("Temperatura (C°)", fontsize=12)
