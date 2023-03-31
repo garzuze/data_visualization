@@ -34,6 +34,7 @@ plt.style.use('seaborn')
 fig, ax = plt.subplots()
 ax.plot(dates, highs, c='lightcoral')
 ax.plot(dates, lows, c='lightskyblue')
+plt.ylim([-5, 55])
 ax.fill_between(dates, highs, lows, facecolor='blue', alpha=0.1)
 
 # Formatando o gráfico
