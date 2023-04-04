@@ -17,14 +17,18 @@ with open(filename) as f:
     reader = csv.reader(f)
     header_row = next(reader)
     print(header_row)
+    max_temperature = header_row.index("TMAX")
+    min_temperature = header_row.index("TMIN")
+    name_index = header_row.index("NAME")
 
     # Pegar as datas e as temperaturas mais altas e baixas desse arquivo
     dates, highs, lows = [], [], []
     for row in reader:
         current_date = datetime.strptime(row[2], '%Y-%m-%d')
+        name = row[name_index]
         try:
-            high = convert_to_celsius(int(row[4]))
-            low = convert_to_celsius(int(row[5]))
+            high = convert_to_celsius(int(row[max_temperature]))
+            low = convert_to_celsius(int(row[min_temperature]))
         except ValueError:
             print(f"Faltando dados para {current_date}")
         else:
@@ -40,7 +44,7 @@ ax.plot(dates, lows, c='lightskyblue')
 ax.fill_between(dates, highs, lows, facecolor='blue', alpha=0.1)
 
 # Formatando o gráfico
-title = 'Temperaturas diárias mais altas e baixas - Vale da Morte 2018'
+title = f'Temperaturas  altas e baixas - {name}'
 ax.set_title(title, fontsize=18)
 ax.set_xlabel("", fontsize=12)
 fig.autofmt_xdate()
