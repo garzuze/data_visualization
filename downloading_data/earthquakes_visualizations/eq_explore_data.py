@@ -25,15 +25,11 @@ all_eq_dicts = all_eq_data['features']
 mags, lons, lats, hover_texts = [], [], [], []
 
 for eq_dict in all_eq_dicts:
-    mag = eq_dict['properties']['mag']          # magnitude
-    lon = eq_dict['geometry']['coordinates'][0] # longitude
-    lat = eq_dict['geometry']['coordinates'][1] # latitude
-    title = eq_dict['properties']['title']      # título do terremoto
-    mags.append(mag)
-    lons.append(lon)
-    lats.append(lat)
-    hover_texts.append(title)
-
+    mags.append(eq_dict['properties']['mag'])          # magnitude
+    lons.append(eq_dict['geometry']['coordinates'][0]) # longitude
+    lats.append(eq_dict['geometry']['coordinates'][1]) # latitude
+    hover_texts.append(eq_dict['properties']['title']) # título do terremoto
+    
 # Mapeando os terremotos
 data = [{
     'type': 'scattergeo',
