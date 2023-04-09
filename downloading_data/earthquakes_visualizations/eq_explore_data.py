@@ -21,6 +21,9 @@ with open(readable_file, 'w') as f:
 # Extraindo todos os dicionários
 all_eq_dicts = all_eq_data['features']
 
+# Extraindo um título automático
+title = all_eq_data['metadata']['title']
+
 # Extraindo magnitudes, longitudes, latitudes e títulos para cada ponto
 mags, lons, lats, hover_texts = [], [], [], []
 
@@ -45,7 +48,7 @@ data = [{
     }
      }]
 
-my_layout = Layout(title='Terremotos mundiais')
+my_layout = Layout(title=title)
 
 fig = {'data': data, 'layout': my_layout}
 offline.plot(fig, filename="terremotos_mundiais.html")
